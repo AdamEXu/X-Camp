@@ -1,0 +1,20 @@
+queen (x, y)
+cannot be on same row -> (x,i)
+cannot be on same colomn -> (i,y)
+cannot be on diaginal (x+i, y+i or x-i, y-i)  - x+n < max x-i >= 0
+
+1 1 1 1
+1 1 2 2
+1 0 1 2
+1 0 2 1
+
+Step 1: p[0,0] = 1
+Step 2: p[0,i] = 1 (column)
+Step 3: p[i,0] = 1 (row)
+Step 4: p[0+i,0+i] = 1 (diaginal bottom right, 0+i < n) p[0-i][0+i] (diaginal top right) p[0-i,0-i] (diaginal top left) 
+Step 5: Find next p [x, y] = 0
+Step 6: Repeat step 1, except with found [x, y]
+Step 7: Repeat step 2
+Step 8: Repeat step 3
+Step 9: 
+

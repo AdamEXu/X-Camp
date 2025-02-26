@@ -1,0 +1,13 @@
+// C++ Recursive program for Tower of Hanoi
+#include
+using namespace std;
+// Recursive function to solve Tower
+// of Hanoi puzzle
+void towerOfHanoi(int n, char from_rod, char to_rod,
+char aux_rod1, char aux_rod2)
+{
+if (n == 0)
+return;
+if (n == 1)
+{
+cout << "\n Move disk" <

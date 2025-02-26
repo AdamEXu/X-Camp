@@ -1,0 +1,1 @@
+g++ submitted.cpp -o result; ./result < foo.txt > result1.txt; ./result < bar.txt > result2.txt; ./result < foobar.txt > result3.txt

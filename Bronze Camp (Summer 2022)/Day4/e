@@ -1,0 +1,2 @@
+#include<iostream>
+using namespace std;int main(void){int blx1,bly1,trx1,try1;int blx2,bly2,trx2,try2;cin>>blx1>>bly1>>trx1>>try1;cin>>blx2>>bly2>>trx2>>try2;int bw=max(trx1,trx2)-min(blx1,blx2);int bh=max(try1,try2)-min(bly1,bly2);cout<<max(bh,bw)*max(bh,bw)<<endl;}

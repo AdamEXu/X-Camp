@@ -1,0 +1,41 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+ 
+bool reverse_sort_helper(pair<int, int> p, pair<int, int> q) { return p.second <q.second; }
+
+int n, Psum[2500+1][2500+1];
+pair<int, int> pastures[2500];
+ 
+int reverse_prefix_sum_helper(int x1, int y1, int x2, int y2)
+{
+  return Psum[x2+1][y2+1] - Psum[x2+1][y1] - Psum[x1][y2+1] + Psum[x1][y1];
+}
+ 
+int main(void)
+{
+  cin >> n;
+  for (int i = 0; i < n; i++) {
+    int x, y;
+    cin >> x >> y;
+    pastures[i]  =  make_pair(x,y);
+  }
+  sort(pastures, pastures+n); 
+  for (int i = 0; i < n; i++) pastures[i].first  =  i+1;
+  sort(pastures, pastures+n, reverse_sort_helper); 
+  for (int i = 0; i < n; i++) pastures[i].second  =  i+1;
+  for (int i = 0; i < n; i++) Psum[pastures[i].first][pastures[i].second]  =  1;
+  for (int i = 1; i<= n; i++)
+    for (int j = 1; j<= n; j++)
+      Psum[i][j] +=  Psum[i-1][j] + Psum[i][j-1] - Psum[i-1][j-1];
+  long long answer  =  0;
+  for (int i = 0; i < n; i++) 
+    for (int j = i; j < n; j++) {
+      int x1  =  min(pastures[i].first, pastures[j].first) - 1;
+      int x2  =  max(pastures[i].first, pastures[j].first) - 1;
+      answer +=  reverse_prefix_sum_helper(0,i,x1,j) * reverse_prefix_sum_helper(x2,i,n-1,j);
+    }
+  cout << answer + 1 << "\n";
+  
+}

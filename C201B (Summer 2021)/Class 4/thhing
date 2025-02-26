@@ -1,0 +1,47 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+// #include <string>
+// #include <iomanip>
+// #include <algorithm>
+// #include <climits>
+// #include <cmath>
+using namespace std;
+
+struct group {
+  int upper;
+  int lower;
+  group(): upper(0), lower(0) {}
+};
+
+int main() {
+  int n, left, right;
+  int sum = 0; 
+  cin >> n;
+  vector<int> num (n, 0);
+  for (int i = 0; i < n; i++) {
+    cin >> num[i];
+  }
+  cin >> left >> right; 
+
+  int lowe = 0;
+  int high = 0; 
+
+  for (int i = 0; i < n; i++) {
+    int cur = num[i];
+    sum += i; 
+    if (i < left) {
+      lowe += i - left; 
+    }
+    if (i > right) {
+      high += right - i;
+    }
+  }
+
+  if (sum > right * n || sum < left * n) {
+    cout << -1;
+  }
+  else {
+    cout <<  max(lowe, high) << endl;
+  }
+}
